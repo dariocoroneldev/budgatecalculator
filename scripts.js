@@ -5,19 +5,26 @@ let lettersHeight = document.getElementById("letterheight");
 let lettersDensity = document.getElementById("letterdensity");
 let cost = document.getElementById("cost");
 let squaremeters = document.getElementById("squaremeters");
+let squaremetersValue = 0;
 let options = document.getElementById('type');
 let costN = 1620000;
 let lettersValues = document.querySelectorAll('input[type="number"]');
+let lettersLength = document.getElementById("letterslength");
 
 lettersValues.forEach((element) => {
   element.onchange = (()=>{
-    element.value = element.value/100;//converted from cm to m
+    if(element.id == "letterslength"){
+      element.value = element.value;
+    }else{
+      element.value = element.value/100;//converted from cm to m
+    }
   });
 })
 
-//todo:fix it to replace correctly the commas
+
 function formatNumber(n) {
-  return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  r = n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return r;
 }
 
 //todo:refactor this code 
@@ -30,7 +37,7 @@ options.onchange = function(){
     console.log(costN);
   } else if (options.selectedIndex == 1) {
     //acrilico
-    costN = 13200000;
+    costN = 1320000;
   }else if (options.selectedIndex == 2) {
     //pvc
     costN = 810000;
@@ -44,20 +51,27 @@ options.onchange = function(){
   }
 };
 
+function squaremetersCalc(height, width, density,){
+  let r =height * width + density * width;
+  return r
+}
 
 
 form.addEventListener('submit',function (e){
   e.preventDefault();
   e.stopPropagation();
 
-  //todo:refactor the code
-  let squaremeterstotal = lettersHeight.value * lettersWidth.value + lettersDensity.value * lettersWidth.value;
-  let total = squaremeterstotal * costN;
-  squaremeters.value = parseInt(squaremeterstotal);
-  value = parseInt(total);
-  stringed = String(value);
-  //todo: fix the format of the string
-  valueConverted = stringed;
+  let total = squaremetersCalc(lettersHeight.value,lettersWidth.value,lettersDensity.value) * costN;
+
+  squaremeters.value = parseInt(total)/costN.toFixed(1);
+
+  if(lettersLength.value== ""){
+    value = parseInt(total);
+  }else{
+    value = parseInt(total) * lettersLength.value;
+  }
+  valueConverted = value.toString();
   cost.value = formatNumber(valueConverted);
+  
 });
 
