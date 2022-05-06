@@ -37,6 +37,14 @@
         <form id="form" class="needs-validation" novalidate>
           <div class="row g-3">
           
+
+            <div class="col-12">
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+              </div>
+            </div>
+
             <div class="col-sm-6">
               <label for="letterwidth" class="form-label">Ancho</label>
               <div class="input-group mb-3">
@@ -59,7 +67,7 @@
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label for="letterdensity" class="form-label">Espesor</label>
               <div class="input-group mb-3">
                 <span class="input-group-text">m</span>
@@ -70,7 +78,12 @@
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-md-4">
+              <label for="letterslength" class="form-label">cantidad de letras(opcional)</label>
+              <input type="number" class="form-control" id="letterslength" placeholder="0">
+            </div>
+
+            <div class="col-sm-4">
               <label for="type" class="form-label">tipo</label>
               <select id="type" class="form-select" aria-label="Default select example">
                 <option selected>Base ACM c/ letras de Acrilico</option>
@@ -82,6 +95,7 @@
               </select>
             </div>
 
+
               <div class="col-md-4">
                 <label for="cost" class="form-label">Costo</label>
                 <input type="text" class="form-control" id="cost" placeholder="0" readonly>
@@ -91,6 +105,8 @@
                 <label for="squaremetters" class="form-label">Metros Cuadrados</label>
                 <input type="text" class="form-control" id="squaremeters" placeholder="0" readonly>
               </div>
+           
+
 
             </div>
           </div>
