@@ -97,5 +97,5 @@ function redirect(){
 
 
 
-  window.location.replace(whatsappMessage);
+  window.location.href =whatsappMessage;
 }
